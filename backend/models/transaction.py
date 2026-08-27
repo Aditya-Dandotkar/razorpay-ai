@@ -7,4 +7,4 @@ class Transaction(Base):
     id = Column(Integer, primary_key=True, index=True)
     customer_id = Column(Integer)
     amount = Column(Float)
-    status = Column(String)
+    transaction_type = Column(String)

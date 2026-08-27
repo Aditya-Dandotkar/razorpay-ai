@@ -9,6 +9,7 @@ import backend.models.recovery
 from backend.routes.customer_routes import router as customer_router
 from backend.routes.transaction_routes import router as transaction_router
 from backend.routes.recovery_routes import router as recovery_router
+from backend.routes.risk_routes import router as risk_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -30,6 +31,12 @@ app.include_router(
     recovery_router,
     prefix="/recoveries",
     tags=["Recoveries"]
+)
+
+app.include_router(
+    risk_router,
+    prefix="/risks",
+    tags=["Risks"]
 )
 
 @app.get("/")
