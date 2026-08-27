@@ -1,0 +1,13 @@
+.venv/
+venv/
+
+__pycache__/
+*/__pycache__/
+
+*.pyc
+
+.vscode/
+
+backend/ML/*.pkl
+
+.env
