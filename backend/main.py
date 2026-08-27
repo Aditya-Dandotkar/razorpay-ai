@@ -39,6 +39,7 @@ app.include_router(
     tags=["Risks"]
 )
 
+
 @app.get("/")
 def home():
     return {"message": "Revenue Guardian API Running"}
