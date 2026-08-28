@@ -15,6 +15,8 @@ def generate_revenue_summary(db: Session):
     medium = 0
     low = 0
 
+    total_revenue = 0
+
     for customer in customers:
 
         transactions = (
@@ -23,12 +25,14 @@ def generate_revenue_summary(db: Session):
             .all()
         )
 
-        total_amount = sum(t.amount for t in transactions)
+        customer_revenue = sum(t.amount for t in transactions)
 
-        if total_amount > 100000:
+        total_revenue += customer_revenue
+
+        if customer_revenue > 100000:
             high += 1
 
-        elif total_amount > 50000:
+        elif customer_revenue > 50000:
             medium += 1
 
         else:
@@ -42,12 +46,12 @@ def generate_revenue_summary(db: Session):
 
     return {
         "total_customers": len(customers),
+        "total_revenue": total_revenue,
         "high_risk_customers": high,
         "medium_risk_customers": medium,
         "low_risk_customers": low,
         "summary": summary
     }
-
     
 def revenue_leakage_summary(db: Session):
 

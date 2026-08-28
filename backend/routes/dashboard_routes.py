@@ -4,7 +4,10 @@ from sqlalchemy.orm import Session
 from backend.database import SessionLocal
 
 from backend.services.dashboard_service import (
-    get_dashboard_overview
+    get_dashboard_overview,
+    get_risk_summary,
+    get_leakage_summary,
+    get_agent_insights
 )
 
 router = APIRouter()
@@ -22,12 +25,6 @@ def dashboard_overview():
     return result
 
 
-from backend.services.dashboard_service import (
-    get_dashboard_overview,
-    get_risk_summary
-)
-
-
 @router.get("/risk-summary")
 def risk_summary():
 
@@ -38,12 +35,6 @@ def risk_summary():
     db.close()
 
     return result
-
-from backend.services.dashboard_service import (
-    get_dashboard_overview,
-    get_risk_summary,
-    get_leakage_summary
-)
 
 
 @router.get("/leakage-summary")
@@ -56,13 +47,6 @@ def leakage_summary():
     db.close()
 
     return result
-
-from backend.services.dashboard_service import (
-    get_dashboard_overview,
-    get_risk_summary,
-    get_leakage_summary,
-    get_agent_insights
-)
 
 
 @router.get("/agent-insights")

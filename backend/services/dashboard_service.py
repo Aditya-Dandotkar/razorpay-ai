@@ -22,6 +22,9 @@ def get_dashboard_overview(db: Session):
         "total_customers":
             revenue_summary["total_customers"],
 
+        "total_revenue":
+            revenue_summary["total_revenue"],
+
         "high_risk_customers":
             revenue_summary["high_risk_customers"],
 
@@ -38,7 +41,9 @@ def get_dashboard_overview(db: Session):
             leakage_summary["recommendation"],
 
         "insights":
-            learning_summary["insights"]
+            learning_summary["insights"],
+        "total_revenue":
+            revenue_summary["total_revenue"],
     }
 
 def get_risk_summary(db: Session):
@@ -61,7 +66,7 @@ def get_leakage_summary(db: Session):
     leakage = revenue_leakage_summary(db)
 
     return leakage
-    
+
 
 def get_agent_insights(db: Session):
 
