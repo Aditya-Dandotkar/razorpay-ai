@@ -16,6 +16,7 @@ from backend.routes.revenue_routes import router as revenue_router
 from backend.routes.strategy_routes import router as strategy_router
 from backend.routes.revenue_leakage_routes import router as revenue_leakage_router
 from backend.routes.agent_routes import router as agent_router
+from backend.routes.learning_routes import router as learning_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -81,6 +82,11 @@ app.include_router(
     tags=["Agents"]
 )
 
+app.include_router(
+    learning_router,
+    prefix="/learning",
+    tags=["Learning Agent"]
+)
 
 
 @app.get("/")
