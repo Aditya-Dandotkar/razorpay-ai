@@ -14,6 +14,8 @@ from backend.routes.churn_routes import router as churn_router
 from backend.routes.rootcause_routes import router as rootcause_router
 from backend.routes.revenue_routes import router as revenue_router
 from backend.routes.strategy_routes import router as strategy_router
+from backend.routes.revenue_leakage_routes import router as revenue_leakage_router
+from backend.routes.agent_routes import router as agent_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -66,6 +68,20 @@ app.include_router(
     prefix="/strategy",
     tags=["Strategy Agent"]
 )
+
+app.include_router(
+    revenue_leakage_router,
+    prefix="/revenue-leakage",
+    tags=["Revenue Leakage"]
+)
+
+app.include_router(
+    agent_router,
+    prefix="/agents",
+    tags=["Agents"]
+)
+
+
 
 @app.get("/")
 def home():

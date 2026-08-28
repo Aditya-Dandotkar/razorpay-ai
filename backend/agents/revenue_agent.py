@@ -2,6 +2,9 @@ from sqlalchemy.orm import Session
 
 from backend.models.customer import Customer
 from backend.models.transaction import Transaction
+from backend.services.revenue_leakage_service import (
+    calculate_revenue_leakage
+)
 
 
 def generate_revenue_summary(db: Session):
@@ -43,4 +46,29 @@ def generate_revenue_summary(db: Session):
         "medium_risk_customers": medium,
         "low_risk_customers": low,
         "summary": summary
+    }
+
+    
+def revenue_leakage_summary(db: Session):
+
+    leakage_data = calculate_revenue_leakage(db)
+
+    total_leakage = sum(
+        item["revenue_leakage"]
+        for item in leakage_data
+    )
+
+    highest_leakage_customer = max(
+        leakage_data,
+        key=lambda x: x["revenue_leakage"]
+    )
+
+    return {
+        "total_revenue_leakage": total_leakage,
+        "highest_leakage_customer":
+            highest_leakage_customer["customer_name"],
+        "highest_leakage_amount":
+            highest_leakage_customer["revenue_leakage"],
+        "recommendation":
+            "Immediate Recovery Campaign"
     }
