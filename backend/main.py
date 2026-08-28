@@ -11,6 +11,7 @@ from backend.routes.transaction_routes import router as transaction_router
 from backend.routes.recovery_routes import router as recovery_router
 from backend.routes.risk_routes import router as risk_router
 from backend.routes.churn_routes import router as churn_router
+from backend.routes.rootcause_routes import router as rootcause_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -46,6 +47,11 @@ app.include_router(
     tags=["Churn"]
 )
 
+app.include_router(
+    rootcause_router,
+    prefix="/rootcause",
+    tags=["Root Cause"]
+)
 
 @app.get("/")
 def home():
