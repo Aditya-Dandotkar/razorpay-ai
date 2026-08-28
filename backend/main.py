@@ -12,6 +12,8 @@ from backend.routes.recovery_routes import router as recovery_router
 from backend.routes.risk_routes import router as risk_router
 from backend.routes.churn_routes import router as churn_router
 from backend.routes.rootcause_routes import router as rootcause_router
+from backend.routes.revenue_routes import router as revenue_router
+from backend.routes.strategy_routes import router as strategy_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -51,6 +53,18 @@ app.include_router(
     rootcause_router,
     prefix="/rootcause",
     tags=["Root Cause"]
+)
+
+app.include_router(
+    revenue_router,
+    prefix="/revenue",
+    tags=["Revenue Agent"]
+)
+
+app.include_router(
+    strategy_router,
+    prefix="/strategy",
+    tags=["Strategy Agent"]
 )
 
 @app.get("/")
